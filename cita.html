@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una pregunta especial para ti ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f9d1d1 0%, #f8a5a5 100%);
+            color: #5c3d3d;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(188, 112, 112, 0.3);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heart-decoration {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.1);
+            font-size: 120px;
+            z-index: 0;
+        }
+
+        .heart-decoration.top-left {
+            top: -30px;
+            left: -30px;
+        }
+
+        .heart-decoration.bottom-right {
+            bottom: -30px;
+            right: -30px;
+        }
+
+        .header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #e63946;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8b5a5a;
+            margin-bottom: 20px;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid #ffb6c1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .message-box {
+            background-color: #fff5f7;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid #e63946;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-box p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .message-box i {
+            color: #e63946;
+            margin-right: 10px;
+        }
+
+        .question {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #e63946;
+            text-align: center;
+            margin: 25px 0;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 180px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(to right, #e63946, #ff6b6b);
+            color: white;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.5);
+        }
+
+        .btn-no {
+            background-color: #f1f1f1;
+            color: #5c3d3d;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-no:hover {
+            background-color: #e0e0e0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .response-message {
+            background: linear-gradient(135deg, #e63946, #ff6b6b);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        .response-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .response-message p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hearts-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .heart {
+            font-size: 2rem;
+            color: #ff6b6b;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .heart:nth-child(2n) {
+            animation-delay: 0.5s;
+        }
+
+        .heart:nth-child(3n) {
+            animation-delay: 1s;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #8b5a5a;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+                min-width: 150px;
+            }
+            
+            .photo-frame {
+                width: 170px;
+                height: 170px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .buttons {
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart-decoration top-left">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <div class="heart-decoration bottom-right">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <div class="header">
+            <h1>Para la persona más especial</h1>
+            <p class="subtitle">Una pregunta importante para ti ❤️</p>
+        </div>
+        
+        <div class="photo-frame">
+            <div class="photo-placeholder">
+                <i class="fas fa-heart"></i>
+            </div>
+        </div>
+        
+        <div class="message-box">
+            <p><i class="fas fa-quote-left"></i> Desde que entraste en mi vida, cada día es más brillante y lleno de significado. Tu sonrisa ilumina mis días y tu amor llena mi corazón de una felicidad que nunca antes había conocido.</p>
+            <p><i class="fas fa-heart"></i> Eres la razón por la que creo en el destino, la persona con la que quiero compartir no solo los momentos felices, sino también los desafíos, porque sé que juntos podemos con todo.</p>
+            <p><i class="fas fa-star"></i> Y ahora, en este día tan especial, tengo una pregunta muy importante que hacerte...</p>
+        </div>
+        
+        <div class="question pulse">
+            ¿Quieres ser mi 14 de febrero... y todos los días?
+        </div>
+        
+        <div class="buttons" id="buttons-container">
+            <button class="btn btn-yes" id="btn-yes">
+                <i class="fas fa-heart"></i> ¡SÍ!
+            </button>
+            <button class="btn btn-no" id="btn-no">
+                <i class="fas fa-times"></i> No
+            </button>
+        </div>
+        
+        <div class="response-message hidden" id="response-yes">
+            <h2>¡Me has hecho el más feliz! ❤️</h2>
+            <p>No hay palabras para describir la alegría que siento ahora mismo. Prometo hacer de este 14 de febrero y todos los días una celebración de nuestro amor.</p>
+            <p>Te amo más de lo que las palabras pueden expresar.</p>
+            <div class="hearts-container" id="hearts-container">
+                <!-- Los corazones se generarán con JavaScript -->
+            </div>
+        </div>
+        
+        <div class="response-message hidden" id="response-no">
+            <h2>Entiendo tu decisión</h2>
+            <p>Aprecio tu honestidad. Mi cariño por ti sigue intacto y espero que podamos seguir compartiendo momentos especiales juntos.</p>
+            <p>Gracias por ser siempre sincera conmigo.</p>
+        </div>
+        
+        <div class="footer">
+            <p>Con todo mi amor, para la persona más especial en mi vida. 💖</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnYes = document.getElementById('btn-yes');
+            const btnNo = document.getElementById('btn-no');
+            const responseYes = document.getElementById('response-yes');
+            const responseNo = document.getElementById('response-no');
+            const buttonsContainer = document.getElementById('buttons-container');
+            const heartsContainer = document.getElementById('hearts-container');
+            
+            // Crear corazones flotantes para la respuesta positiva
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heartsContainer.appendChild(heart);
+            }
+            
+            // Manejar el clic en SÍ
+            btnYes.addEventListener('click', function() {
+                responseYes.classList.remove('hidden');
+                responseNo.classList.add('hidden');
+                buttonsContainer.classList.add('hidden');
+                
+                // Efecto de confeti de corazones
+                createHeartConfetti();
+                
+                // Reproducir sonido de éxito (si está permitido por el navegador)
+                playSuccessSound();
+            });
+            
+            // Manejar el clic en NO
+            btnNo.addEventListener('click', function() {
+                // Hacer que el botón NO sea difícil de hacer clic (se mueve)
+                moveNoButton();
+                
+                // Después de 3 intentos fallidos, mostrar la respuesta
+                let attempts = 0;
+                const maxAttempts = 3;
+                
+                if (attempts < maxAttempts) {
+                    attempts++;
+                    if (attempts === maxAttempts) {
+                        responseNo.classList.remove('hidden');
+                        responseYes.classList.add('hidden');
+                        buttonsContainer.classList.add('hidden');
+                    }
+                }
+            });
+            
+            // Función para mover el botón NO
+            function moveNoButton() {
+                const container = document.querySelector('.container');
+                const containerRect = container.getBoundingClientRect();
+                const buttonRect = btnNo.getBoundingClientRect();
+                
+                // Calcular posición aleatoria dentro del contenedor
+                const maxX = containerRect.width - buttonRect.width - 30;
+                const maxY = containerRect.height - buttonRect.height - 30;
+                
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+                
+                // Aplicar la nueva posición
+                btnNo.style.position = 'absolute';
+                btnNo.style.left = `${randomX}px`;
+                btnNo.style.top = `${randomY}px`;
+                
+                // Cambiar temporalmente el texto
+                const originalText = btnNo.innerHTML;
+                btnNo.innerHTML = '<i class="fas fa-smile-wink"></i> ¡Segura?';
+                
+                // Restaurar el texto después de un tiempo
+                setTimeout(() => {
+                    btnNo.innerHTML = originalText;
+                }, 1000);
+            }
+            
+            // Función para crear efecto de confeti de corazones
+            function createHeartConfetti() {
+                const colors = ['#e63946', '#ff6b6b', '#ff8fa3', '#ffb6c1'];
+                
+                for (let i = 0; i < 50; i++) {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    heart.style.position = 'fixed';
+                    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '-50px';
+                    heart.style.zIndex = '9999';
+                    heart.style.opacity = '0.9';
+                    heart.style.pointerEvents = 'none';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Animación de caída
+                    const animation = heart.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 3000 + 2000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+                    
+                    // Eliminar el corazón después de la animación
+                    animation.onfinish = () => {
+                        heart.remove();
+                    };
+                }
+            }
+            
+            // Función para reproducir sonido de éxito
+            function playSuccessSound() {
+                try {
+                    // Crear un contexto de audio
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    
+                    // Crear un oscilador para el sonido
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    // Configurar el sonido
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // Do
+                    oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // Mi
+                    oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // Sol
+                    
+                    // Configurar la ganancia (volumen)
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+                    
+                    // Iniciar y detener el sonido
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 1);
+                } catch (e) {
+                    console.log("El audio no pudo ser reproducido:", e);
+                }
+            }
+            
+            // Efecto de entrada para los elementos
+            const elements = document.querySelectorAll('.header, .photo-frame, .message-box, .question, .buttons');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.animation = 'fadeIn 1s ease forwards';
+                    el.style.opacity = '0';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
